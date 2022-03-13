@@ -19,7 +19,7 @@ class EventResource(Resource):
 
 
 
-api.add_resource(HellowWorldResource'/hello')
+api.add_resource(HellowWorldResource, '/hello')
 api.add_resource(EventResource, '/event/today')
 
 
