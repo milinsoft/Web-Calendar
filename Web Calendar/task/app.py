@@ -26,18 +26,14 @@ class EventResource(Resource):
         return response
 
 
-# do not change the way you run the program
-if __name__ == '__main__':
-
-    parser = reqparse.RequestParser()
-    #  takes argument names, their type, and displays an error message if something goes wrong.
-
+def set_arguments():
     parser.add_argument(
         'date',
         type=inputs.date,
         help="The event date with the correct format is required! The correct format is YYYY-MM-DD!",
         required=True
     )
+
     parser.add_argument(
         'event',
         type=str,
@@ -45,7 +41,12 @@ if __name__ == '__main__':
         required=True
     )
 
-    api.add_resource(EventResource, '/event/')  # /event/
+
+# do not change the way you run the program
+if __name__ == '__main__':
+    parser = reqparse.RequestParser()
+    set_arguments()
+    api.add_resource(EventResource, '/event/')
 
     if len(sys.argv) > 1:
         arg_host, arg_port = sys.argv[1].split(':')
