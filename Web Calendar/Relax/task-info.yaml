@@ -515,6 +515,6 @@ files:
 - name: test/__init__.py
   visible: false
   learner_created: false
-feedback_link: https://hyperskill.org/projects/170/stages/883/implement#comment
+feedback_link: https://hyperskill.org/learn/step/12530#comment
 status: Unchecked
 record: -1

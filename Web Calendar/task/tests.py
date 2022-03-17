@@ -1,16 +1,22 @@
 from hstest import FlaskTest, dynamic_test
 
 from test.base import (
-    test_get_request_on_first_stage
+    test_correct_request,
+    test_bad_request
 )
 
 
 class ServerTest(FlaskTest):
     source = 'app'
 
-    @dynamic_test
-    def test(self):
-        return test_get_request_on_first_stage(self)
+    funcs = [
+        test_correct_request,
+        test_bad_request
+    ]
+
+    @dynamic_test(data=funcs)
+    def test_correct_request(self, func):
+        return func(self)
 
 
 if __name__ == '__main__':
