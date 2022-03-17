@@ -1,5 +1,4 @@
 import sys
-import time
 
 from flask import Flask
 from flask_restful import Api, Resource, reqparse, inputs
@@ -8,6 +7,7 @@ app = Flask(__name__)
 
 # write your code here
 api = Api(app)
+
 
 class EventResource(Resource):
     @staticmethod
@@ -19,8 +19,8 @@ class EventResource(Resource):
         args = parser.parse_args()
         response = {
             "message": "The event has been added!",
-            "event": "Video conference",
-            "date": "2022-03-18"
+            "event": args['event'],
+            "date": str(args['date'].date())
         }
 
         return response
@@ -45,10 +45,7 @@ if __name__ == '__main__':
         required=True
     )
 
-
     api.add_resource(EventResource, '/event/')  # /event/
-
-
 
     if len(sys.argv) > 1:
         arg_host, arg_port = sys.argv[1].split(':')
