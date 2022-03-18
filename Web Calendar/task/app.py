@@ -2,11 +2,28 @@ import datetime
 import sys
 
 from flask import Flask
-from flask_restful import Resource, Api, reqparse, inputs, fields, marshal_with
+from flask_restful import Resource, Api, reqparse, inputs, marshal_with, fields
 from flask_sqlalchemy import SQLAlchemy
 
 
 TABLE_NAME = 'events'
+
+app = Flask(__name__)
+# SQLALCHEMY_DATABASE_URI is a DB configuration key
+app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{TABLE_NAME}.db'
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+
+db = SQLAlchemy(app)  # initialize database
+api = Api(app)
+db.create_all()  # save the table in the database
+
+
+resource_fields = {
+    "id": fields.Integer,
+    "event": fields.String,
+    "date": fields.String,
+}
+
 
 parser = reqparse.RequestParser()
 
@@ -24,23 +41,6 @@ parser.add_argument(
     help="The event name is required!",
     required=True
 )
-
-
-app = Flask(__name__)
-# SQLALCHEMY_DATABASE_URI is a DB configuration key
-app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{TABLE_NAME}.sqlite'
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-
-db = SQLAlchemy(app)  # initialize database
-api = Api(app)
-db.create_all()  # save the table in the database
-
-
-resource_fields = {
-    "id": fields.Integer,
-    "event": fields.String,
-    "date": fields.String,
-}
 
 
 class Event(db.Model):
@@ -84,6 +84,7 @@ class AllEventsResource(Resource):
 
 
 class EventResourceToday(AllEventsResource):
+
     @staticmethod
     @marshal_with(resource_fields)
     def get():
@@ -95,6 +96,7 @@ class EventResourceToday(AllEventsResource):
 
 api.add_resource(EventResourceToday, '/event/today')
 api.add_resource(AllEventsResource, '/event')
+
 
 # do not change the way you run the program
 if __name__ == '__main__':

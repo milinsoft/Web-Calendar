@@ -6,7 +6,9 @@ from test.base import (
     test_correct_request,
     test_bad_request,
     test_get_events,
-    test_today_events
+    test_today_events,
+    check_events_in_range,
+    check_get_delete_by_id
 )
 
 
@@ -17,7 +19,9 @@ class ServerTest(FlaskTest):
         test_correct_request,
         test_bad_request,
         test_get_events,
-        test_today_events
+        test_today_events,
+        check_events_in_range,
+        check_get_delete_by_id
     ]
 
     def generate(self):
