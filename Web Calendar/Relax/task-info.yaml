@@ -515,6 +515,12 @@ files:
 - name: test/__init__.py
   visible: false
   learner_created: false
+- name: events.sqlite
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/learn/step/12530#comment
-status: Unchecked
+status: Solved
+feedback:
+  message: Congratulations!
+  time: Fri, 18 Mar 2022 18:38:24 UTC
 record: -1
