@@ -6,7 +6,8 @@ from flask_restful import Resource, Api, reqparse, inputs, marshal_with, fields
 from flask_sqlalchemy import SQLAlchemy
 
 
-TABLE_NAME = 'events'
+TABLE_NAME: str = 'events'
+NO_EVENTS_RESPONSE: dict = {"data": "There are no events for today!"}
 
 app = Flask(__name__)
 # SQLALCHEMY_DATABASE_URI is a DB configuration key
@@ -58,7 +59,7 @@ class AllEventsResource(Resource):
     def get():
         all_events = Event.query.all()
         if not all_events:
-            return {"data": "There are no events for today!"}
+            return NO_EVENTS_RESPONSE
 
         return all_events
 
@@ -90,7 +91,7 @@ class EventResourceToday(AllEventsResource):
     def get():
         todays_events = Event.query.filter(Event.date == datetime.date.today()).all()
         if not todays_events:
-            return {"data": "There are no events for today!"}
+            return NO_EVENTS_RESPONSE
         return todays_events
 
 

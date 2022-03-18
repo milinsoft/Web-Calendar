@@ -2,11 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3851aba6-6cad-44c7-925c-b11b489059cd" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/frameworkLessonHistory/storage.storageData" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/frameworkLessonHistory/storage.storageData" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/frameworkLessonHistory/storage.storageRecordIndex" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/frameworkLessonHistory/storage.storageRecordIndex" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web Calendar/Back to the future/task-info.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Web Calendar/Back to the future/task-info.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Web Calendar/Relax/task-info.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Web Calendar/Relax/task-info.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web Calendar/lesson-info.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Web Calendar/lesson-info.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Web Calendar/task/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/Web Calendar/task/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Web Calendar/task/events.db" beforeDir="false" afterPath="$PROJECT_DIR$/Web Calendar/task/events.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/course-remote-info.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/course-remote-info.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web Calendar/task/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/Web Calendar/task/tests.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +93,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Web Calendar/task/app.py</url>
-          <line>52</line>
+          <line>54</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
