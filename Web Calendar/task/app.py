@@ -1,7 +1,6 @@
 import datetime
 import sys
 
-
 from flask import Flask, abort, render_template, Response, request
 from flask_restful import Resource, Api, reqparse, inputs, marshal_with, fields
 from flask_sqlalchemy import SQLAlchemy
@@ -10,6 +9,7 @@ TABLE_NAME: str = 'events'
 NO_EVENTS_RESPONSE: dict = {"data": "There are no events for today!"}
 
 app = Flask(__name__)
+
 # SQLALCHEMY_DATABASE_URI is a DB configuration key
 app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{TABLE_NAME}.db'
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
@@ -22,46 +22,11 @@ resource_fields = {
     "id": fields.Integer,
     "event": fields.String,
     "date": fields.String,
-    'start_time': fields.String,
-    'end_time': fields.String,
 }
 
 
-def parse_all():
-    parser.add_argument(
-        'date',
-        type=inputs.date,
-        help="The event date with the correct format is required! "
-             "The correct format is YYYY-MM-DD!",
-        required=True
-    )
-
-    parser.add_argument(
-        'event',
-        type=str,
-        help="The event name is required!",
-        required=True
-    )
-
-    parser.add_argument(
-        'start_time',
-        type=inputs.date,
-        help="Start event date is required!"
-             "The correct format is YYYY-MM-DD!",
-        required=False
-    )
-
-    parser.add_argument(
-        'end_time',
-        type=inputs.date,
-        help="End event date is required!"
-             "The correct format is YYYY-MM-DD!",
-        required=False,
-    )
-
-
-parser = reqparse.RequestParser()
-parse_all()
+def page_not_found(e):
+    return render_template('404.html'), 404
 
 
 class Event(db.Model):
@@ -89,7 +54,7 @@ class AllEventsResource(Resource):
     def get():
         start = request.args.get('start_time')
         end = request.args.get('end_time')
-        if start and end:
+        if all((start, end)):
             range_events = Event.query.filter(Event.date.between(start, end)).all()
             return range_events
 
@@ -159,10 +124,43 @@ api.add_resource(EventResourceToday, '/event/today')
 api.add_resource(EventByID, '/event/<int:event_id>')
 api.add_resource(AllEventsResource, '/event')
 api.add_resource(MainPageResource, '/')
+app.register_error_handler(404, page_not_found)
 
 
 # do not change the way you run the program
 if __name__ == '__main__':
+
+    def parse_all():
+        parser.add_argument(
+            'date', type=inputs.date,
+            help="The event date with the correct format is required! "
+                 "The correct format is YYYY-MM-DD!",
+            required=True
+        )
+
+        parser.add_argument(
+            'event', type=str,
+            help="The event name is required!",
+            required=True
+        )
+
+        parser.add_argument(
+            'start_time', type=inputs.date,
+            help="Start event date is required!"
+                 "The correct format is YYYY-MM-DD!",
+            required=False
+        )
+
+        parser.add_argument(
+            'end_time', type=inputs.date,
+            help="End event date is required!"
+                 "The correct format is YYYY-MM-DD!",
+            required=False,
+        )
+
+    parser = reqparse.RequestParser()
+    parse_all()
+
     if len(sys.argv) > 1:
         arg_host, arg_port = sys.argv[1].split(':')
         app.run(host=arg_host, port=arg_port)

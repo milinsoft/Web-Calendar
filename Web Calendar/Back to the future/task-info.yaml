@@ -522,6 +522,12 @@ files:
 - name: templates/index.html
   visible: true
   learner_created: true
+- name: templates/404.html
+  visible: true
+  learner_created: true
+- name: templates/funny-404-error.jpg
+  visible: true
+  learner_created: true
 - name: events.db
   visible: true
   learner_created: true
@@ -530,5 +536,5 @@ status: Solved
 feedback:
   message: Well done! You've finished the project. Select a new project on <a href="https://hyperskill.org/projects">JetBrains
     Academy</a> to continue learning.
-  time: Sun, 27 Mar 2022 13:37:16 UTC
+  time: Tue, 29 Mar 2022 17:55:21 UTC
 record: 4
