@@ -522,13 +522,16 @@ files:
 - name: templates/index.html
   visible: true
   learner_created: true
+- name: events.db
+  visible: true
+  learner_created: true
 - name: templates/404.html
   visible: true
   learner_created: true
-- name: templates/funny-404-error.jpg
+- name: ./static/funny-404-error.jpg
   visible: true
   learner_created: true
-- name: events.db
+- name: static/404.css
   visible: true
   learner_created: true
 feedback_link: https://hyperskill.org/learn/step/12531#comment
